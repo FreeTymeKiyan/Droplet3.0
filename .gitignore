@@ -13,4 +13,12 @@ bin/
 gen/
 
 # Local configuration file (sdk path, etc)
-local.properties
+*.properties
+
+*.txt
+
+.settings
+
+.project
+
+.classpath

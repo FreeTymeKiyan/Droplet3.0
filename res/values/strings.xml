@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">Droplet</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <!-- activity titles -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_auth">AuthActivity</string>
+    <string name="title_activity_bet">BetActivity</string>
+    <string name="title_activity_create">CreateActivity</string>
+    <string name="title_activity_pref">PrefActivity</string>
+    
+    
+</resources>
