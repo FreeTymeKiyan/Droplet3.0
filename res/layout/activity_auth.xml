@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@android:color/background_dark"
+    >
+    
+    <!-- 认证信息框 -->
+    <RelativeLayout 
+        android:id="@+id/rl_authInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/background_light"
+        android:layout_centerInParent="true"
+        android:paddingBottom="10dp"
+        >
+        
+        <!-- 认证信息框的Logo -->
+        <ImageView 
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_search"
+            android:contentDescription="@string/appLogo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+        
+        <!-- 认证信息框输入账号提示文字控件 -->
+        <TextView 
+            android:id="@+id/tv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_user"
+            android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            android:layout_below="@id/iv_logo"
+            android:layout_marginTop="10dp"            
+            android:layout_marginLeft="5dp"
+            />
+        
+        <!-- 认证信息框输入账号控件 -->
+        <EditText 
+            android:id="@+id/et_user"    
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_user"
+            android:textSize="15sp"
+            android:inputType="textCapCharacters"
+            android:singleLine="true"
+            android:layout_below="@id/tv_user"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"            
+            />
+        
+        <!-- 认证信息框输入密码提示文字控件 -->
+        <TextView 
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_code"
+            android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            android:layout_below="@id/et_user"
+            android:layout_marginTop="10dp"            
+            android:layout_marginLeft="5dp"
+            />
+        
+        <!-- 认证信息框输入密码控件 -->
+        <EditText 
+            android:id="@+id/et_code"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_code"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:layout_below="@id/tv_code"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp" 
+            />
+        
+        <!-- 认证信息框的登录按钮 -->
+        <Button 
+            android:id="@+id/btn_logIn"
+            android:layout_width="wrap_content"           
+            android:layout_height="wrap_content"
+            android:text="@string/btn_logIn"
+            android:layout_below="@id/et_code"
+            android:layout_alignRight="@id/et_code"
+            android:layout_marginTop="10dp"
+            />
+        
+    </RelativeLayout>
+</RelativeLayout>

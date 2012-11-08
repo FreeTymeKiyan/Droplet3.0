@@ -9,6 +9,15 @@
     <string name="title_activity_bet">BetActivity</string>
     <string name="title_activity_create">CreateActivity</string>
     <string name="title_activity_pref">PrefActivity</string>
-    
-    
+    <!-- content descriptions -->
+    <string name="appLogo">app_logo</string>
+    <!-- text of activity_auth -->
+    <string name="tv_user">账号</string>
+    <string name="tv_code">密码</string>
+    <string name="et_user">输入账号</string>
+    <string name="et_code">输入密码</string>
+    <string name="btn_logIn">登录</string>
+    <string name="toast_network_not_connected">请检查网络连接</string>
+    <string name="toast_username_null">请输入用户名</string>
+    <string name="toast_usercode_null">请输入密码</string>
 </resources>
