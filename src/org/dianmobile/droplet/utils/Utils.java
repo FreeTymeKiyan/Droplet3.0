@@ -15,6 +15,7 @@ public class Utils {
 	
 	/**
      * 检查网络连接的方法
+     * 需要在AndroidManifest.xml中声明权限
      * 
      * @return 	false	未连接
      * 			true	连接

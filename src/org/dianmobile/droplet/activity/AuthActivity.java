@@ -21,7 +21,7 @@ import android.widget.Toast;
  * 没有认证存在就出现
  * 
  * @author FreeTymeKiyan
- * @version 0.0.2
+ * @version 0.0.2 
  */
 public class AuthActivity extends Activity {
 
@@ -52,6 +52,9 @@ public class AuthActivity extends Activity {
 	 * 初始化页面控件
 	 */
 	private void initViews() {
+		/*logo*/
+		ivLogo = (ImageView) findViewById(R.id.iv_logo);
+		ivLogo.setImageResource(R.drawable.logo);
 		/*账号输入框*/
 		etUser = (EditText) findViewById(R.id.et_user);
 		/*密码输入框*/
@@ -96,11 +99,11 @@ public class AuthActivity extends Activity {
 	private boolean checkInputValidity(String strUser, 
 			String strCode) {
 		boolean temp = false;
-		if (strUser == null) { // 用户名为空
+		if (strUser.equals("")) { // 用户名为空
 			Toast.makeText(AuthActivity.this, R.string
 					.toast_username_null, Toast.LENGTH_SHORT)
 					.show();
-		} else if (strCode == null) { // 密码为空
+		} else if (strCode.equals("")) { // 密码为空
 			Toast.makeText(AuthActivity.this, R.string
 					.toast_usercode_null, Toast.LENGTH_SHORT)
 					.show();
