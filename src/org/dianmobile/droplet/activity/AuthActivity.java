@@ -75,6 +75,7 @@ public class AuthActivity extends Activity {
 							(strUser, strCode);
 					if (inputValidity) {
 						// TODO 发送人人认证
+						
 						// TODO 认证成功，登录，加入认证数据库
 						// TODO 认证失败，重新输入
 					}
