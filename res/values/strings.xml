@@ -11,6 +11,7 @@
     <string name="title_activity_pref">PrefActivity</string>
     <!-- content descriptions -->
     <string name="appLogo">app_logo</string>
+    <string name="settingsBtn">ib_of_settings</string>
     <!-- text of activity_auth -->
     <string name="tv_user">账号</string>
     <string name="tv_code">密码</string>
@@ -20,4 +21,10 @@
     <string name="toast_network_not_connected">请检查网络连接</string>
     <string name="toast_username_null">请输入用户名</string>
     <string name="toast_usercode_null">请输入密码</string>
+    <!-- text of activity_main -->
+    <string name="tv_appName">卓普</string>
+    <string name="btn_letf">求监督</string>
+    <string name="btn_center">谈感受</string>
+    <string name="btn_right">接受惩罚</string>
+    
 </resources>

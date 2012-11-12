@@ -6,22 +6,39 @@
 
     <!-- 上方的导航栏 -->
     <RelativeLayout 
-        
+        android:id="@+id/rl_topNaviBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_navi_bar"
         >
         <!-- 上方导航栏正中间的应用名称 -->
     	<TextView 
-    	    
+    	    android:id="@+id/tv_appName"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="@string/tv_appName"
+    	    android:textSize="20sp"
+    	    android:textColor="@android:color/white"
+    	    android:layout_centerInParent="true"
     	    />    
     	    
     	<!-- 上方导航栏右侧的设置按钮 -->
     	<ImageButton 
-    	    
+    	    android:id="@+id/ib_settings"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:src="@drawable/ib_main_menu"
+    	    android:background="@android:color/transparent"
+    	    android:contentDescription="@string/settingsBtn"
+    	    android:layout_centerVertical="true"
+    	    android:layout_alignParentRight="true"
+    	    android:layout_marginRight="10dp"
     	    />
     </RelativeLayout>
     
     <!-- viewflow的indicator -->
     <org.taptwo.android.widget.CircleFlowIndicator
-		android:id="@+id/viewflowindic"        
+		android:id="@+id/vfi_circles"        
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:padding="10dp"
@@ -32,18 +49,54 @@
     
     <!-- viewflow本身 -->
     <org.taptwo.android.widget.ViewFlow
-        android:id="@+id/viewFlow"
+        android:id="@+id/vf_habitDetails"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerInParent="true"
-        app:sidebuffer="3"
+        app:sidebuffer="0"
+        android:layout_below="@id/rl_topNaviBar"
         >
     </org.taptwo.android.widget.ViewFlow>
 	    
     <!-- 底部的导航栏 -->
-	<RelativeLayout 
+	<LinearLayout
+	    android:id="@+id/ll_bottomNaviBar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/bottom_navi_bar"
+	    android:layout_alignParentBottom="true"
+	    android:orientation="horizontal"
 	    >
+    	<!-- 求监督的btn -->
+	    <Button 
+	        android:id="@+id/btn_left"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/btn_letf"
+	        android:gravity="center"
+	        android:layout_weight="1"
+	        android:layout_gravity="center_vertical"
+	        />
 	    
-	</RelativeLayout>
-    
+	    <!-- 谈感受的btn -->
+	    <Button 
+	        android:id="@+id/btn_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+	        />
+	    
+	    <!-- 接受惩罚的btn -->
+	    <Button 
+	        android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_right"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+	        />
+	</LinearLayout>
 </RelativeLayout>
