@@ -1,14 +1,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    xmlns:app="http://schemas.android.com/apk/res/org.dianmobile.droplet">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
-
+    <!-- 上方的导航栏 -->
+    <RelativeLayout 
+        
+        >
+        <!-- 上方导航栏正中间的应用名称 -->
+    	<TextView 
+    	    
+    	    />    
+    	    
+    	<!-- 上方导航栏右侧的设置按钮 -->
+    	<ImageButton 
+    	    
+    	    />
+    </RelativeLayout>
+    
+    <!-- viewflow的indicator -->
+    <org.taptwo.android.widget.CircleFlowIndicator
+		android:id="@+id/viewflowindic"        
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:padding="10dp"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+        >
+    </org.taptwo.android.widget.CircleFlowIndicator>
+    
+    <!-- viewflow本身 -->
+    <org.taptwo.android.widget.ViewFlow
+        android:id="@+id/viewFlow"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        app:sidebuffer="3"
+        >
+    </org.taptwo.android.widget.ViewFlow>
+	    
+    <!-- 底部的导航栏 -->
+	<RelativeLayout 
+	    >
+	    
+	</RelativeLayout>
+    
 </RelativeLayout>
