@@ -52,8 +52,8 @@
         android:id="@+id/vf_habitDetails"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        app:sidebuffer="0"
         android:layout_below="@id/rl_topNaviBar"
+        android:duplicateParentState="true"
         >
     </org.taptwo.android.widget.ViewFlow>
 	    

@@ -3,5 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-
+    <!--  习惯详细记录的列表 -->
+    <ListView 
+        android:id="@+id/lv_habitDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="@android:color/black"
+        android:dividerHeight="1dp"
+        android:drawSelectorOnTop="false"
+        android:scrollingCache="false"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/black"
+        >
+    </ListView>
+    
 </RelativeLayout>

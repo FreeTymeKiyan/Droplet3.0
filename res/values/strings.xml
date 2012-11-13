@@ -12,6 +12,8 @@
     <!-- content descriptions -->
     <string name="appLogo">app_logo</string>
     <string name="settingsBtn">ib_of_settings</string>
+    <string name="addNewBtn">ib_of_add_new_habit</string>
+    <string name="habitPic">iv_of_habit_pic</string>
     <!-- text of activity_auth -->
     <string name="tv_user">账号</string>
     <string name="tv_code">密码</string>
@@ -26,5 +28,12 @@
     <string name="btn_letf">求监督</string>
     <string name="btn_center">谈感受</string>
     <string name="btn_right">接受惩罚</string>
+    <string name="tv_if">如果</string>
+    <string name="tv_habitName">我没能坚持每天跑步</string>
+    <string name="tv_then">那么</string>
+    <string name="tv_punish">我就请大家吃冰淇淋</string>
+    <string name="tv_follower">\@ 肖银 刘阳 饶曦</string>
+    <string name="debugWords">debug words</string>
+    <string name="debugTimestamp">debug timestamp</string>
     
 </resources>

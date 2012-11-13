@@ -18,7 +18,7 @@ import android.widget.ImageButton;
  * 习惯数量不足四个时显示添加界面
  * 
  * @author FreeTymeKiyan
- * @version 0.0.2
+ * @version 0.0.3
  */
 public class MainActivity extends Activity {
 	/*页面控件*/
@@ -32,6 +32,9 @@ public class MainActivity extends Activity {
 	private Button btnPunish;
 	/**显示习惯和习惯详情的左右滑动控件*/
 	private ViewFlow viewFlow;
+	
+	/**习惯总数*/
+	private int habitCount = 2;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,16 +85,11 @@ public class MainActivity extends Activity {
 		});
 		/*中间的ViewFlow*/
 		viewFlow = (ViewFlow) findViewById(R.id.vf_habitDetails);
-		viewFlow.setAdapter(new MainActivityAdapter());
+		viewFlow.setAdapter(new MainActivityAdapter(MainActivity
+				.this, habitCount));
 		/*viewFlow的指示器*/
 		CircleFlowIndicator flowIndicator = (CircleFlowIndicator) 
 				findViewById(R.id.vfi_circles);
 		viewFlow.setFlowIndicator(flowIndicator);
 	}
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.activity_main, menu);
-//        return true;
-//    }
 }

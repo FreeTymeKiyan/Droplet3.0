@@ -2,6 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+
+    <!-- 添加新习惯的btn -->
+    <ImageButton 
+        android:id="@+id/ib_addNewHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_new_habit"
+        android:contentDescription="@string/addNewBtn"
+        android:layout_centerInParent="true"
+        />
 
 </RelativeLayout>
