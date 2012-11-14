@@ -3,6 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
+    <ProgressBar 
+        android:id="@+id/progress"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+    </ProgressBar>
+    
     <!--  习惯详细记录的列表 -->
     <ListView 
         android:id="@+id/lv_habitDetails"

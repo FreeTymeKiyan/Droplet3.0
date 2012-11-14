@@ -9,6 +9,7 @@
     <string name="title_activity_bet">BetActivity</string>
     <string name="title_activity_create">CreateActivity</string>
     <string name="title_activity_pref">PrefActivity</string>
+    <string name="title_activity_share">ShareActivity</string>
     <!-- content descriptions -->
     <string name="appLogo">app_logo</string>
     <string name="settingsBtn">ib_of_settings</string>

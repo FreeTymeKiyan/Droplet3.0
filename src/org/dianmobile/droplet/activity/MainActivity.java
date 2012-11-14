@@ -2,10 +2,12 @@ package org.dianmobile.droplet.activity;
 
 import org.dianmobile.droplet.R;
 import org.dianmobile.droplet.adapters.MainActivityAdapter;
+import org.dianmobile.droplet.db.HabitDb;
 import org.taptwo.android.widget.CircleFlowIndicator;
 import org.taptwo.android.widget.ViewFlow;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,10 +17,10 @@ import android.widget.ImageButton;
 /**
  * 首页
  * 显示习惯及其记录
- * 习惯数量不足四个时显示添加界面
+ * 显示添加界面
  * 
  * @author FreeTymeKiyan
- * @version 0.0.3
+ * @version 0.0.4
  */
 public class MainActivity extends Activity {
 	/*页面控件*/
@@ -34,16 +36,25 @@ public class MainActivity extends Activity {
 	private ViewFlow viewFlow;
 	
 	/**习惯总数*/
-	private int habitCount = 2;
+	private int habitCount = 0;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        prepareData();
         initViews();
     }
 
-    /**
+	/**
+	 * 准备所需数据的方法
+	 */
+    private void prepareData() {
+    	HabitDb hdb = new HabitDb(MainActivity.this);
+    	habitCount = hdb.queryHabitCount(); // 查询习惯个数
+	}
+
+	/**
      * 初始化界面控件的方法
      */
 	private void initViews() {
@@ -53,7 +64,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				/*TODO 跳转到设置页面*/
+				/*跳转到设置页面*/
+				Intent i = new Intent();
+				i.setClass(MainActivity.this, PrefActivity.class);
+				startActivity(i);
 			}
 		});
 		/*下方导航栏求监督的按钮*/
@@ -62,7 +76,9 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				/*TODO 跳转到求监督页面*/
+				Intent i = new Intent();
+				i.setClass(MainActivity.this, BetActivity.class);
+				startActivity(i);
 			}
 		});
 		/*下方导航栏谈感受的按钮*/
@@ -71,7 +87,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				/*TODO 跳转到谈感受页面*/
+				/*跳转到谈感受页面*/
+				Intent i = new Intent();
+				i.setClass(MainActivity.this, ShareActivity.class);
+				startActivity(i);
 			}
 		});
 		/*下方导航栏接受惩罚的按钮*/
