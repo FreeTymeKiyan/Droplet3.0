@@ -36,5 +36,19 @@
     <string name="tv_follower">\@ 肖银 刘阳 饶曦</string>
     <string name="debugWords">debug words</string>
     <string name="debugTimestamp">debug timestamp</string>
+    <!-- text of activity_main -->
+    <string name="tv_betContact">赌约</string>
+    <string name="createRtnBtn">the button of return</string>
+    <string name="createPublishBtn">the button of publish</string>
+    <string name="et_createHabit">点击创建习惯</string>
+    <string name="et_createBet">点击创建赌约</string>
+    <string name="btn_addFollowers">\@请人监督</string>
+    <string name="tv_createAlarm">提醒</string>
+    <string name="tv_createAlarmState">闹钟提醒</string>
+    <string name="btn_createAlarmState">开启</string>
+    <string name="tv_createAlarmTime">时间</string>
+    <string name="btn_createAlarmTime">09:00</string>
+    <string name="tBtn_createAlarmState_off">关闭</string>
+    <string name="tBtn_createAlarmState_on">开启</string>
     
 </resources>

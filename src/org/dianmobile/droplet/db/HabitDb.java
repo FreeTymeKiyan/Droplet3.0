@@ -99,7 +99,8 @@ public class HabitDb extends SQLiteOpenHelper {
 	public int queryHabitCount() {
 		int count = 0;
 		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor c = db.query(HABIT, null, null, null, null, null, null);
+		Cursor c = db.query(HABIT, null, null, null, null, null, 
+				null);
 		c.moveToFirst();
 		count = c.getCount();
 		c.close();

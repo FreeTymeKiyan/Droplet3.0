@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <!-- 上方的导航栏 -->
+    <RelativeLayout 
+        android:id="@+id/rl_createTopNaviBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_navi_bar"
+        >
+        <!-- 上方导航栏左侧的返回按钮 -->
+        <ImageButton 
+            android:id="@+id/ib_createRtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_cancel"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/createRtnBtn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            />
+        <!-- 上方导航栏正中间的页面名称 -->
+        <TextView 
+            android:id="@+id/tv_betContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_betContact"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            />    
+            
+        <!-- 上方导航栏右侧的发布按钮 -->
+        <ImageButton 
+            android:id="@+id/ib_createPublish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_publish"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/createPublishBtn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+    
+    <!-- 如果我 -->
+    <TextView 
+        android:id="@+id/tv_createIf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_if"
+        android:textSize="30sp"
+        android:layout_below="@id/rl_createTopNaviBar"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        />
+    
+    <!-- 点击创建习惯 -->
+    <EditText 
+        android:id="@+id/et_createHabit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/et_createHabit"
+        android:textSize="20sp"
+        android:cursorVisible="false"
+        android:layout_below="@id/tv_createIf"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        />
+    
+    <!-- 那么 -->
+    <TextView 
+        android:id="@+id/tv_createThen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_then"
+        android:textSize="30sp"
+        android:layout_below="@id/et_createHabit"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        />
+    
+    <!-- 点击创建赌约 -->
+    <EditText 
+        android:id="@+id/et_createBet"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/et_createBet"
+        android:textSize="20sp"
+        android:cursorVisible="false"
+        android:layout_below="@id/tv_createThen"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        />
+    
+    <!-- 请人监督的按钮 -->
+    <Button 
+        android:id="@+id/btn_addFollowers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_addFollowers"
+        android:gravity="center"
+        android:layout_below="@id/et_createBet"
+        android:layout_alignLeft="@id/et_createBet"
+        />
+    
+    <!-- 提醒 -->
+    <TextView 
+        android:id="@+id/tv_createAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_createAlarm"
+        android:textSize="30sp"
+        android:layout_below="@id/btn_addFollowers"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <!-- 闹钟提醒和时间 -->
+    <RelativeLayout 
+        android:id="@+id/rl_createAlarmState"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_createAlarm"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        >
+        <!-- 闹钟提醒的文字 -->
+        <TextView 
+            android:id="@+id/tv_createAlarmState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_createAlarmState"
+            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_centerVertical="true"
+            />
+        
+        <!-- 闹钟提醒的状态按钮 -->
+        <ToggleButton 
+            android:id="@+id/tBtn_createAlarmState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/tBtn_createAlarmState_on"
+            android:textOff="@string/tBtn_createAlarmState_off"
+            android:checked="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="3dp"
+            />
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:id="@+id/rl_createAlarmTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_createAlarmState"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        >
+  
+        <!-- 时间的文字 -->
+        <TextView 
+            android:id="@+id/tv_createAlarmTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_createAlarmTime"
+            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_centerVertical="true"
+            />
+        <!-- 时间的按钮 -->
+        <Button 
+            android:id="@+id/btn_createAlarmTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_createAlarmTime"
+            android:layout_marginTop="3dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            />
+    </RelativeLayout>
+    
+</RelativeLayout>
