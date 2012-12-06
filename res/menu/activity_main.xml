@@ -2,4 +2,6 @@
     <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
         android:orderInCategory="100" />
+    <item android:id="@+id/run" android:title="@string/jogging"/>
+    <item android:id="@+id/sleep" android:title="@string/sleep"/>
 </menu>

@@ -1,5 +1,7 @@
 package org.dianmobile.droplet.activity;
 
+import static org.dianmobile.droplet.constants.Constants.*;
+
 import org.dianmobile.droplet.R;
 import org.dianmobile.droplet.adapters.MainActivityAdapter;
 import org.dianmobile.droplet.db.HabitDb;
@@ -37,6 +39,8 @@ public class MainActivity extends Activity {
 	
 	/**习惯总数*/
 	private int habitCount = 0;
+	/**主页的适配器*/
+	private MainActivityAdapter adapter;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,11 +108,37 @@ public class MainActivity extends Activity {
 		});
 		/*中间的ViewFlow*/
 		viewFlow = (ViewFlow) findViewById(R.id.vf_habitDetails);
-		viewFlow.setAdapter(new MainActivityAdapter(MainActivity
-				.this, habitCount));
+		adapter = new MainActivityAdapter(
+				MainActivity.this, habitCount, this);
+		viewFlow.setAdapter(adapter);
 		/*viewFlow的指示器*/
 		CircleFlowIndicator flowIndicator = (CircleFlowIndicator) 
 				findViewById(R.id.vfi_circles);
 		viewFlow.setFlowIndicator(flowIndicator);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case REQUEST_CODE_REFRESH_VIEW:
+			switch (resultCode) {
+			case RESULT_CANCELED:
+				
+				break;
+			case RESULT_OK:
+				finish();
+				Intent i = new Intent();
+				i.setClass(this, MainActivity.class);
+				startActivity(i);
+				break;
+			default:
+				break;
+			}
+			break;
+
+		default:
+			break;
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }

@@ -32,7 +32,7 @@ public class HabitDetailsAdapter extends BaseAdapter {
 	
 	public HabitDetailsAdapter(Context context, List<Map<String, Object>> list,
             int layoutID, String flag[], int itemIds[]) {
-		 this.mInflater = LayoutInflater.from(context);
+		this.mInflater = LayoutInflater.from(context);
         this.list = list;
         this.viewId = layoutID;
         this.flag = flag;
@@ -55,7 +55,8 @@ public class HabitDetailsAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View convertView, ViewGroup
+			parent) {
 		if(viewId == 0) {
 			convertView = null;
 		} else {
@@ -66,8 +67,9 @@ public class HabitDetailsAdapter extends BaseAdapter {
 					ImageView) {
                 ImageView iv = (ImageView) convertView
                 		.findViewById(itemIds[i]);
-                iv.setBackgroundResource((Integer) list
-                		.get(position).get(flag[i]));
+                // TODO 将用户拍摄过后的图片显示在ListView当中
+//                iv.setBackgroundResource((Integer) list
+//                		.get(position).get(flag[i]));
             } else if (convertView.findViewById(itemIds[i])
             		instanceof TextView) {
                 TextView tv = (TextView) convertView

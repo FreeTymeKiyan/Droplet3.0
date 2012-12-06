@@ -139,7 +139,7 @@ public class AuthActivity extends Activity {
 	 * 			false	要求认证
 	 */
 	private boolean checkAuthInfo() {
-		boolean temp = false;
+		boolean temp = true; // TODO 改回false
 		SharedPreferences sp = getSharedPreferences(
 				AUTH_PREF_NAME, MODE_PRIVATE);
 		if (sp.contains(AUTH_RENREN_USER_NAME) && 
@@ -147,6 +147,6 @@ public class AuthActivity extends Activity {
 			/*成功认证的用户名和密码信息都存在*/
 			temp = true;
 		}
-		return temp;
+		return temp; 
 	}
 }

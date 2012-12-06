@@ -26,8 +26,8 @@
     <string name="toast_usercode_null">请输入密码</string>
     <!-- text of activity_main -->
     <string name="tv_appName">卓普</string>
-    <string name="btn_letf">求监督</string>
-    <string name="btn_center">谈感受</string>
+    <string name="btn_letf">求个监督</string>
+    <string name="btn_center">谈点感受</string>
     <string name="btn_right">接受惩罚</string>
     <string name="tv_if">如果</string>
     <string name="tv_habitName">我没能坚持每天跑步</string>
@@ -36,7 +36,7 @@
     <string name="tv_follower">\@ 肖银 刘阳 饶曦</string>
     <string name="debugWords">debug words</string>
     <string name="debugTimestamp">debug timestamp</string>
-    <!-- text of activity_main -->
+    <!-- text of activity_create -->
     <string name="tv_betContact">赌约</string>
     <string name="createRtnBtn">the button of return</string>
     <string name="createPublishBtn">the button of publish</string>
@@ -50,5 +50,17 @@
     <string name="btn_createAlarmTime">09:00</string>
     <string name="tBtn_createAlarmState_off">关闭</string>
     <string name="tBtn_createAlarmState_on">开启</string>
+    <string name="invalid">内容都填好了吗？</string>
     
+    <string name="cancel_create">取消</string>    
+    <string name="cancel_msg">真的取消创建习惯吗？</string>    
+    <string name="yes">是</string>    
+    <string name="no">否</string>    
+    <string name="choose_habit">选择习惯</string>    
+    <string name="get_up">七点起床</string>
+    <string name="jogging">慢跑半小时</string>
+    <string name="sleep">十一点睡觉</string>    
+    <string name="custom">自定义…</string>    
+    <string name="choose_pubnish">选择惩罚</string>    
+    <string name="eat">请大家吃东西</string>
 </resources>
