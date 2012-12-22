@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <!-- 顶部的导航栏 -->
+    <RelativeLayout 
+        android:id="@+id/rl_navigationBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_navi_bar"
+        >
+        
+        <!-- 返回的按钮 -->
+        <ImageButton 
+            android:id="@+id/ib_atFriendsRtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_cancel"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/atFriendsRtnBtn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            />
+        
+        <!-- 中间的文字 -->
+        <TextView 
+            android:id="@+id/tv_atFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_atFriends"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            />
+        
+        <!-- 确认的按钮 -->
+        <ImageButton 
+            android:id="@+id/ib_atFriendsAck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_publish"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/atFriendsAckBtn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+    
+    <!-- 显示@过的人的输入框 -->
+    <EditText 
+        android:id="@+id/et_atedFriends"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/et_atedFriends"
+        android:textSize="15sp"
+       	android:layout_below="@id/rl_navigationBar"
+        />
+    
+    <!-- 人人的好友列表 -->
+    <ListView 
+		android:id="@+id/lv_renrenFriends"		        
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:cacheColorHint="#00000000"
+		android:drawSelectorOnTop="false"
+		android:scrollingCache="false"
+		android:fadingEdge="vertical"
+		android:layout_below="@id/et_atedFriends"		
+        />
+
+</RelativeLayout>

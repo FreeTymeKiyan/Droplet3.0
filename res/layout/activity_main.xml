@@ -50,13 +50,14 @@
         >
     </org.taptwo.android.widget.CircleFlowIndicator>
     
-    <!-- viewflow本身 -->
+    <!-- viewflow本身，sideBuffer是一次加载的数量 -->
     <org.taptwo.android.widget.ViewFlow
         android:id="@+id/vf_habitDetails"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/rl_topNaviBar"
         android:duplicateParentState="true"
+        app:sidebuffer="6"
         >
     </org.taptwo.android.widget.ViewFlow>
 	    

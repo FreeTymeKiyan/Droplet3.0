@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="habits">
-        <item >七点起床</item>
-        <item >慢跑半小时</item>
-        <item >十一点睡觉</item>
+        <item >没能每天背30分钟单词</item>
+        <item >没能在8点前起床</item>
+        <item >没能每天慢跑30分钟</item>
         <item >自定义…</item>
     </string-array>
     
     <string-array name="punishments">
-        <item >请大家吃东西</item>
+        <item >我就请大家吃饭</item>
         <item >自定义…</item>
+    </string-array>
+    
+    <string-array name="picSource">
+        <item >从相册中选择</item>
+        <item >拍一张</item>
     </string-array>
 </resources>

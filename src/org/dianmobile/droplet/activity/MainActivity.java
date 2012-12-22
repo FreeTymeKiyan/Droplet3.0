@@ -1,6 +1,7 @@
 package org.dianmobile.droplet.activity;
 
 import static org.dianmobile.droplet.constants.Constants.*;
+import static org.dianmobile.droplet.db.HabitDb.*;
 
 import org.dianmobile.droplet.R;
 import org.dianmobile.droplet.adapters.MainActivityAdapter;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * 首页
@@ -22,7 +24,7 @@ import android.widget.ImageButton;
  * 显示添加界面
  * 
  * @author FreeTymeKiyan
- * @version 0.0.4
+ * @version 0.0.8
  */
 public class MainActivity extends Activity {
 	/*页面控件*/
@@ -80,9 +82,19 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(MainActivity.this, BetActivity.class);
-				startActivity(i);
+				// TODO 滑得太快会导致position没有来得及更新
+				int position = viewFlow.getSelectedItemPosition();
+				if (position != habitCount) {
+					String uuid = adapter.getUuids().get(position);
+					Intent i = new Intent();
+					i.putExtra(UUID, uuid);
+					i.setClass(MainActivity.this, BetActivity.class);
+					startActivityForResult(i, REQUEST_CODE_REFRESH_VIEW);
+				} else {
+					Toast.makeText(MainActivity.this, 
+							R.string.toast_create_first,
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		/*下方导航栏谈感受的按钮*/
@@ -91,10 +103,21 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				/*跳转到谈感受页面*/
-				Intent i = new Intent();
-				i.setClass(MainActivity.this, ShareActivity.class);
-				startActivity(i);
+				// 获取当前的页面位置
+				int position = viewFlow.getSelectedItemPosition();
+				if (position != habitCount) {
+					String uuid = adapter.getUuids().get(position);
+//					System.out.println("uuid " + uuid);
+					/*跳转到谈感受页面*/
+					Intent i = new Intent();
+					i.putExtra(UUID, uuid);
+					i.setClass(MainActivity.this, ShareActivity.class);
+					startActivityForResult(i, REQUEST_CODE_REFRESH_VIEW);
+				} else {
+					Toast.makeText(MainActivity.this, 
+							R.string.toast_create_first,
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		/*下方导航栏接受惩罚的按钮*/
@@ -104,6 +127,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				/*TODO 跳转接受惩罚页面*/
+				
 			}
 		});
 		/*中间的ViewFlow*/

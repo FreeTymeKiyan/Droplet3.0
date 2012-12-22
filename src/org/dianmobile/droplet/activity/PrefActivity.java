@@ -1,5 +1,8 @@
 package org.dianmobile.droplet.activity;
 
+import org.dianmobile.droplet.R;
+
+import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
 /**
@@ -13,8 +16,10 @@ import android.preference.PreferenceActivity;
  * @version 0.0.1
  */
 public class PrefActivity extends PreferenceActivity {
-
-	public PrefActivity() {
-		
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_pref);
 	}
 }

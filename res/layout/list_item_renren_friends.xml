@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <!-- 人人好友的头像图片 -->
+    <ImageView 
+        android:id="@+id/iv_friendHead"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@string/friendHeadIv"
+        android:layout_centerVertical="true"
+        />
+    
+    <!-- 人人好友的名字 -->
+    <TextView 
+        android:id="@+id/tv_friendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/iv_friendHead"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        />
+    
+    <!-- 显示选中状态的勾选框 -->
+    <ImageView 
+        android:id="@+id/iv_chooseState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/ivChooseState"
+        android:src="@drawable/at_friend_checked_icon"
+        />
+
+</RelativeLayout>

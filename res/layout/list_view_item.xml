@@ -20,8 +20,8 @@
     <!-- 习惯详细内容的图片部分 -->
     <ImageView 
         android:id="@+id/iv_habitPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="160dp"
         android:src="@drawable/ic_launcher"
         android:contentDescription="@string/habitPic"
         android:layout_below="@id/tv_habitWords"

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <!-- 设置导航栏 -->
+    <RelativeLayout 
+        android:id="@+id/rl_navigationBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_navi_bar"
+        >
+        
+        <!-- 返回上一页的按钮 -->
+        <ImageButton 
+            android:id="@+id/ib_prefRtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_cancel"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/prefRtnBtn"
+            />
+        
+        <!-- 中间的设置文字 -->
+        <TextView 
+            android:id="@+id/tv_preference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_preference"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            />
+        
+    </RelativeLayout>
+    
+    <!-- 包裹所有设置项的滚动界面 -->
+    <ScrollView 
+        android:id="@+id/sv_scrollPref"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="vertical"
+        android:layout_below="@id/rl_navigationBar"
+        >
+        
+        <!-- 滚动界面的相对布局 -->
+        <RelativeLayout 
+            android:id="@+id/rl_scrollRl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            >
+            
+            <!-- 账号管理 -->
+	        <TextView 
+	            android:id="@+id/tv_accountManagement"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/tv_habitManagement"
+	            android:textSize="14sp"
+	            android:layout_marginTop="22dp"
+	            android:layout_marginLeft="40dp"
+	            />
+        
+	        <!-- 人人认证 -->
+	        <RelativeLayout 
+	            android:id="@+id/rl_renrenAuthorize"
+	            android:layout_width="240dp"
+	            android:layout_height="42dp"
+	            android:layout_centerHorizontal="true"
+	            android:layout_below="@id/tv_accountManagement"
+	            android:layout_marginTop="14dp"
+	            >
+	            
+	            <!-- 人人图标 -->
+	            <ImageView 
+	                android:id="@+id/iv_renrenLogo"
+	                android:layout_width="24dp"
+	                android:layout_height="24dp"
+	                android:src="@drawable/renren_logo"
+	                android:background="@android:color/transparent"
+	                android:contentDescription="@string/renrenLogo"
+	                android:layout_marginLeft="12dp"
+	                android:layout_centerVertical="true"
+	                />
+	            
+	            <!-- 更换账号的按钮 -->
+	            <Button 
+	                android:id="@+id/btn_changeAccount"
+	                android:layout_width="60dp"
+	                android:layout_height="22dp"
+	                android:text="@string/btn_changeAccount"
+	                android:textSize="10sp"
+	                android:layout_centerVertical="true"
+	                android:layout_alignParentRight="true"
+	                android:layout_marginRight="10dp"
+	                />
+	            
+	        </RelativeLayout>
+        
+	        <!-- 习惯管理 -->
+	        <TextView 
+	            android:id="@+id/tv_habitManagement"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/tv_habitManagement"
+	            android:textSize="14sp"
+	            android:layout_below="@id/rl_renrenAuthorize"
+	            android:layout_marginTop="22dp"
+	            android:layout_alignLeft="@id/tv_accountManagement"
+	            />
+	        
+	        <!-- 删除习惯的ListView -->
+	        <ListView 
+	            android:id="@+id/lv_deleteHabit"
+	            android:layout_width="360dp"
+	            android:layout_height="wrap_content"
+	            android:cacheColorHint="#00000000"
+	            android:dividerHeight="1dp"
+	            android:drawSelectorOnTop="false"
+	            android:fadingEdge="vertical"
+	            android:layout_below="@id/tv_habitManagement"
+	            />
+	        
+	        <!-- 闹钟提醒 -->
+	        <RelativeLayout >
+	            
+	    		<!-- 闹钟提醒的文字部分 -->
+	        	<TextView />
+	        
+	        	<!-- 闹钟提醒的一键开启 -->
+	        	<Button />
+	            
+	        </RelativeLayout>
+	        <!-- 闹钟管理的ListView -->
+	        <ListView ></ListView>
+	            
+	    </RelativeLayout>    
+    </ScrollView>
+</RelativeLayout>

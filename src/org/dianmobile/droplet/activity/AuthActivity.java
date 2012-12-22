@@ -1,7 +1,9 @@
 package org.dianmobile.droplet.activity;
 
 import org.dianmobile.droplet.R;
+import org.dianmobile.droplet.utils.RenrenHelper;
 import org.dianmobile.droplet.utils.Utils;
+
 import static org.dianmobile.droplet.constants.Constants.*;
 
 import android.app.Activity;
@@ -25,6 +27,8 @@ import android.widget.Toast;
  */
 public class AuthActivity extends Activity {
 
+	/**跳转到WebView页面进行认证*/
+	private static final int REQUEST_RENREN_AUTHORIZATION = 0;
 	/*页面控件*/
 	/**app的logo*/
 	private ImageView ivLogo;
@@ -34,6 +38,8 @@ public class AuthActivity extends Activity {
 	private EditText etCode;
 	/**登录按钮*/
 	private Button btnLogIn;
+	/**人人认证按钮*/
+	private Button btnRenrenAuth;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,30 @@ public class AuthActivity extends Activity {
 	 * 初始化页面控件
 	 */
 	private void initViews() {
+		/*人人认证按钮*/
+		btnRenrenAuth = (Button) findViewById(R.id.btn_renrenAuth);
+		btnRenrenAuth.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (Utils.checkNetworkState(AuthActivity.this)) {
+					Intent intent = new Intent(AuthActivity.this, 
+							RenrenActivity.class);
+					startActivityForResult(intent, REQUEST_RENREN_AUTHORIZATION);
+				} else {
+					Toast.makeText(AuthActivity.this, 
+							R.string.toast_network_not_connected,
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		
+	}
+	
+	/**
+	 * 另一个页面
+	 */
+	private void anotherView() {
 		/*logo*/
 		ivLogo = (ImageView) findViewById(R.id.iv_logo);
 		ivLogo.setImageResource(R.drawable.logo);
@@ -139,14 +169,43 @@ public class AuthActivity extends Activity {
 	 * 			false	要求认证
 	 */
 	private boolean checkAuthInfo() {
-		boolean temp = true; // TODO 改回false
-		SharedPreferences sp = getSharedPreferences(
-				AUTH_PREF_NAME, MODE_PRIVATE);
-		if (sp.contains(AUTH_RENREN_USER_NAME) && 
-				sp.contains(AUTH_RENREN_USER_CODE)) {
-			/*成功认证的用户名和密码信息都存在*/
-			temp = true;
+//		boolean temp = false; 
+//		SharedPreferences sp = getSharedPreferences(
+//				AUTH_PREF_NAME, MODE_PRIVATE);
+//		if (sp.contains(AUTH_RENREN_USER_NAME) && 
+//				sp.contains(AUTH_RENREN_USER_CODE)) {
+//			/*成功认证的用户名和密码信息都存在*/
+//			temp = true;
+//		}
+//		if (sp.contains(AUTH_RENREN_ACCESS_TOKEN) 
+//				&& !sp.getString(AUTH_RENREN_ACCESS_TOKEN, "")
+//				.equals("")) {
+//			temp = true;
+//		}
+		return RenrenHelper.isAuthorized(AuthActivity.this); 
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case REQUEST_RENREN_AUTHORIZATION:
+			switch (resultCode) {
+			case RESULT_OK:
+				logIn();
+				break;
+			case RESULT_CANCELED:
+				Toast.makeText(AuthActivity.this, 
+						R.string.toast_cancel_authorize, 
+						Toast.LENGTH_SHORT).show();
+				break;
+			default:
+				break;
+			}
+			break;
+
+		default:
+			break;
 		}
-		return temp; 
 	}
 }

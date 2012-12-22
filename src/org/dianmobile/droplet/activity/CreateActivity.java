@@ -4,17 +4,24 @@ import static org.dianmobile.droplet.constants.Constants.*;
 import static org.dianmobile.droplet.db.HabitDb.*;
 
 import java.util.Calendar;
+import java.util.Iterator;
 
 import org.dianmobile.droplet.R;
+import org.dianmobile.droplet.asyncTask.UpdateRenrenStatus;
 import org.dianmobile.droplet.db.HabitDb;
 import org.dianmobile.droplet.models.Habit;
+import org.dianmobile.droplet.receivers.AlarmReceiver;
 import org.dianmobile.droplet.utils.Utils;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
@@ -34,9 +41,10 @@ import android.widget.ToggleButton;
  * 填写习惯、赌约，设置闹钟
  * 
  * @author FreeTymeKiyan
- * @version 0.0.5
+ * @version 0.0.12
  */
 public class CreateActivity extends Activity {
+	
 	/*控件*/
 	/**返回上一页的按钮*/
 	private ImageButton btnRtn;
@@ -47,9 +55,9 @@ public class CreateActivity extends Activity {
 	/**创建赌约的输入框*/
 	private EditText etCreateBet;
 	/**请人监督的按钮*/
-	private Button btnAddFollowers;
+	private Button btnAtFriends;
 	/**闹钟状态的按钮*/
-	private ToggleButton btnAlarmState;
+	private ToggleButton tbtnAlarmState;
 	/**闹钟时间的按钮*/
 	private Button btnAlarmTime;
 	/**取消创建的对话框*/
@@ -62,14 +70,17 @@ public class CreateActivity extends Activity {
 	/**闹钟的状态*/
 	private boolean boolAlarmState = false;
 	/**习惯的内容字符串*/
-	private String strHabitTitle;
+	private String strHabitName;
 	/**赌约的内容字符串*/
-	private String strHabitPunishment;
+	private String strHabitBet;
 	/**记录闹钟时间的日历*/
 	private Calendar calendar;
 	/**闹钟的时间字符串*/
 	private String strAlarmTime = "09:00";
-	
+	/**at好友的bundle信息*/
+	private Bundle atFriendInfo = new Bundle();
+	/**at好友的字符串*/
+	private String strAtFriendInfo = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +110,10 @@ public class CreateActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				System.out.println("btn publish");
-				/* 抓取信息，判断合法，添加到数据库*/
+				/*抓取信息，判断合法，添加到数据库*/
 				if (judgeValidity()) {
 					addToDb();
+					syncToRenren();
 					return2Main();
 				}
 			}
@@ -133,24 +145,34 @@ public class CreateActivity extends Activity {
 			}
 		});
 		/*请人监督的按钮*/
-		btnAddFollowers = (Button) findViewById(R.id.btn_addFollowers);
-		btnAddFollowers.setOnClickListener(new OnClickListener() {
+		btnAtFriends = (Button) findViewById(R.id.btn_addFollowers);
+		btnAtFriends.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO 跳转到人人获取好友列表并@的页面
-				// TODO 返回之后记住@相关的信息
-				System.out.println("btn add followers");
+				System.out.println("btn at friends");
+				if (Utils.checkNetworkState(CreateActivity.this)) {
+					/*跳转到人人获取好友列表并@的页面*/
+					Intent i = new Intent();
+					i.setClass(CreateActivity.this, AtRenrenFriendsActivity.class);
+					i.putExtras(atFriendInfo); // 传已有的@好友数据
+					// 返回之后记住@相关的信息
+					startActivityForResult(i, REQUSET_CODE_AT_RENREN_FRIENDS);
+				} else { // 网络未连接
+					Toast.makeText(CreateActivity.this, 
+							R.string.toast_network_not_connected, 
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		/*闹钟状态的按钮*/
-		btnAlarmState = (ToggleButton) findViewById(R.id.tBtn_createAlarmState);
-		btnAlarmState.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		tbtnAlarmState = (ToggleButton) findViewById(R.id.tBtn_createAlarmState);
+		tbtnAlarmState.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //				System.out.println("alarmstate--->" + boolAlarmState);
-				boolAlarmState = btnAlarmState.isChecked();
+				boolAlarmState = isChecked;
 			}
 		});
 		calendar = Calendar.getInstance();
@@ -180,9 +202,9 @@ public class CreateActivity extends Activity {
 								calendar.set(Calendar.MINUTE, minute);
 								calendar.set(Calendar.SECOND, 0);
 								calendar.set(Calendar.MILLISECOND, 0);
-								strAlarmTime = format
+								strAlarmTime = Utils.format
 										(hourOfDay) + ":" 
-										+ format(minute);
+										+ Utils.format(minute);
 								btnAlarmTime.setText(strAlarmTime);
 							}
 
@@ -192,6 +214,21 @@ public class CreateActivity extends Activity {
 	}
 	
 	/**
+	 * 同步内容到人人上
+	 */
+	private void syncToRenren() {
+		/*异步在人人上更新状态：如果我没…，那么我就…。求监督！@…@…*/
+		if (Utils.checkNetworkState(CreateActivity.this)) {
+			new UpdateRenrenStatus().execute(CreateActivity
+					.this, strHabitName, strHabitBet, 
+					strAtFriendInfo);
+		} else {
+			Toast.makeText(CreateActivity.this, R.string.toast_network_not_connected, 
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	/**
 	 * 将合法的信息添加到数据库中
 	 * 信息包括：UUID、NAME、PUNISH、FOLLOWERS
 	 * 以及闹钟的STATE、TIME
@@ -200,18 +237,50 @@ public class CreateActivity extends Activity {
 		String uuid = Utils.getUuid(); // 获得一个uuid
 		ContentValues cv = new ContentValues();
 		cv.put(UUID, uuid);
-		cv.put(NAME, strHabitTitle);
-		cv.put(PUNISH, strHabitPunishment);
-		cv.put(FOLLOWERS, ""); // TODO followers未添加
+		cv.put(NAME, strHabitName);
+		cv.put(PUNISH, strHabitBet);
+		cv.put(FOLLOWERS, strAtFriendInfo); // &id|name&
 		if (boolAlarmState) {
-			cv.put(STATE, STATE_ON);
+			createAlarm(uuid, strAlarmTime);
+			cv.put(STATE, ALARM_STATE_ON);
+			cv.put(TIME, strAlarmTime);
 		}
-		cv.put(TIME, strAlarmTime);
 		Habit h = new Habit(cv);
 		HabitDb hd = new HabitDb(this);
 		if (!hd.insertWhenCreate(h)) {
 			Toast.makeText(this, "创建习惯失败：数据库插入错误", Toast.LENGTH_SHORT)
 				.show();
+		}
+	}
+	
+	/**
+	 * 闹钟状态开启时，添加闹钟
+	 */
+	private void createAlarm(String uuid, String time) {
+		AlarmManager am = (AlarmManager) CreateActivity.this
+				.getSystemService(ALARM_SERVICE);
+		Intent intent = new Intent(ALARM_INTENT_ACTION);
+		intent.putExtra(UUID, uuid);
+		intent.putExtra(TIME, strAlarmTime);
+		intent.putExtra(NAME, strHabitName);
+		intent.putExtra(PUNISH, strHabitBet);
+		intent.setClass(CreateActivity.this, AlarmReceiver.class);
+		PendingIntent sender = PendingIntent.getBroadcast(
+				CreateActivity.this, 0, intent, PendingIntent
+				.FLAG_CANCEL_CURRENT);
+		int interval = 24 * 60 * 60 * 1000; // 一天
+		if (Utils.compareTime(calendar)) { // 时间没过，设置在今天
+			System.out.println("alarm today");
+			am.setRepeating(AlarmManager.RTC_WAKEUP,
+					calendar.getTimeInMillis(), interval, 
+					sender);
+		} else { // 时间已过，设置成明天
+			System.out.println("alarm tomorrow");
+			calendar.set(Calendar.DAY_OF_YEAR, calendar
+					.get(Calendar.DAY_OF_YEAR) + 1);
+			am.setRepeating(AlarmManager.RTC_WAKEUP,
+					calendar.getTimeInMillis(), interval, 
+					sender);
 		}
 	}
 
@@ -261,20 +330,20 @@ public class CreateActivity extends Activity {
 						dialog, int which) {
 					switch (which) {
 					case 0:
+						intWhatHabit = WHAT_HABIT_RECITE_WORDS;
+						etCreateHabit.setText(R.string.recite_words);
+						break;
+					case 1:
 						intWhatHabit = WHAT_HABIT_GET_UP;
 						etCreateHabit.setText(R.string.get_up);
 						break;
-					case 1:
+					case 2:
 						intWhatHabit = WHAT_HABIT_JOGGING;
 						etCreateHabit.setText(R.string.jogging);
 						break;
-					case 2:
-						intWhatHabit = WHAT_HABIT_SLEEP;
-						etCreateHabit.setText(R.string.sleep);
-						break;
 					case 3:
 						intWhatHabit = WHAT_HABIT_CUSTOM;
-						
+						// TODO
 						break;
 					default:
 						break;
@@ -283,19 +352,20 @@ public class CreateActivity extends Activity {
 				}
 			});
 		} else if (id == etCreateBet.getId()) {
-			builder.setTitle(R.string.choose_habit)
-			.setItems(R.array.punishments, new 
+			builder.setTitle(R.string.choose_punish)
+					.setItems(R.array.punishments, new 
 					DialogInterface.OnClickListener() {
 		
 				@Override
 				public void onClick(DialogInterface
 						dialog, int which) {
 					switch (which) {
-					case 0:
+					case WHAT_PUNISHMENT_EAT:
 						intWhatPunishment = WHAT_PUNISHMENT_EAT;
 						etCreateBet.setText(R.string.eat);
 						break;
-					case 1:
+					case WHAT_PUNISHMENT_CUSTOM:
+						// TODO
 						intWhatPunishment = WHAT_PUNISHMENT_CUSTOM;
 						break;
 					default:
@@ -316,25 +386,15 @@ public class CreateActivity extends Activity {
 	 * 			false	有一个为空
 	 */
 	private boolean judgeValidity() {
-		strHabitTitle = etCreateHabit.getText().toString();
-		strHabitPunishment = etCreateBet.getText().toString();
-		if (!strHabitTitle.equals("") && 
-				!strHabitPunishment.equals("")) {
+		strHabitName = etCreateHabit.getText().toString();
+		strHabitBet = etCreateBet.getText().toString();
+		if (!strHabitName.equals("") && 
+				!strHabitBet.equals("")) {
 			return true;
 		}
 		Toast.makeText(this, R.string.invalid, 
 				Toast.LENGTH_SHORT).show();
 		return false;
-	}
-	
-	/** 
-	 * 格式化字符串(7:3->07:03) 
-	 * */
-	private String format(int x) {
-		String s = "" + x;
-		if (s.length() == 1)
-			s = "0" + s;
-		return s;
 	}
 	
 	/**
@@ -351,5 +411,60 @@ public class CreateActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		ifCancel();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case REQUSET_CODE_AT_RENREN_FRIENDS:
+			switch (resultCode) {
+			case RESULT_CANCELED:
+				
+				break;
+			case RESULT_OK:
+				atFriendInfo = data
+						.getBundleExtra(BUNDLE_AT_INFO);
+				new RefreshButtonText().execute(atFriendInfo);
+				break;
+			default:
+				break;
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	private class RefreshButtonText extends AsyncTask<Object,
+			Object, Object> {
+		
+		private Bundle b;
+		private String btnText = "@请人监督";
+		
+		@Override
+		protected Object doInBackground(Object... params) {
+			b = (Bundle) params[0];
+			Iterator<String> iterator = b.keySet().iterator();
+			String temp = "";
+			strAtFriendInfo = "";
+			while (iterator.hasNext()) {
+				temp = b.getString(iterator.next());
+				strAtFriendInfo = strAtFriendInfo + "&" + temp;
+				btnText = btnText + " " + temp.split("\\|")[1];
+			}
+			if (btnText.length() > MAX_BTN_TEXT_LENGTH) {
+				btnText = btnText.substring(0, 
+						MAX_BTN_TEXT_LENGTH - 1) + "...";
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Object result) {
+			super.onPostExecute(result);
+			btnAtFriends.setText(btnText);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package org.dianmobile.droplet.models;
 
 import static org.dianmobile.droplet.db.HabitDb.*;
+import static org.dianmobile.droplet.constants.Constants.*;
 
 import android.content.ContentValues;
 
@@ -8,7 +9,7 @@ import android.content.ContentValues;
  * 用现有的信息生成Habit对象方便进行传递
  * 
  * @author FreeTymeKiyan
- * @version 0.0.3
+ * @version 0.0.4
  */
 public class Habit {
     /*成员变量*/
@@ -27,7 +28,7 @@ public class Habit {
 	/**记录的时间戳*/
 	public String timestamp;
 	/**闹钟的状态*/
-	public int alarmState = STATE_OFF;
+	public int alarmState = ALARM_STATE_OFF;
 	/**闹钟的时间*/
 	public String alarmTime;
 	

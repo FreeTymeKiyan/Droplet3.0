@@ -1,7 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
     
+    <!-- 上方的导航栏 -->
+    <RelativeLayout 
+        android:id="@+id/rl_shareTopNaviBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_navi_bar"
+        >
+        <!-- 上方导航栏左侧的返回按钮 -->
+        <ImageButton 
+            android:id="@+id/ib_shareRtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_cancel"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/shareRtnBtn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            />
+        
+        <!-- 上方导航栏正中间的应用名称 -->
+    	<TextView 
+    	    android:id="@+id/tv_bet"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="@string/tv_bet"
+    	    android:textSize="20sp"
+    	    android:textColor="@android:color/white"
+    	    android:layout_centerInParent="true"
+    	    />    
+    	    
+    	<!-- 上方导航栏右侧的设置按钮 -->
+    	<ImageButton 
+    	    android:id="@+id/ib_publish"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:src="@drawable/ib_publish"
+    	    android:background="@android:color/transparent"
+    	    android:contentDescription="@string/publishBtn"
+    	    android:layout_centerVertical="true"
+    	    android:layout_alignParentRight="true"
+    	    android:layout_marginRight="10dp"
+    	    />
+    </RelativeLayout>
+    
+    <!-- 谈感受的输入框 -->
+    <EditText 
+        android:id="@+id/et_shareFeeling"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:hint="@string/et_shareFeelingHint"
+        android:textSize="15sp"
+        android:gravity="top"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/rl_shareTopNaviBar"
+        android:layout_marginTop="46dp"
+        />
+    
+    <!-- 请人监督的按钮 -->
+    <Button 
+        android:id="@+id/btn_addShareFollowers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_addFollowers"
+        android:gravity="center"
+        android:layout_below="@id/et_shareFeeling"
+        android:layout_alignLeft="@id/et_shareFeeling"
+        android:layout_marginTop="10dp"
+        />
+    
+    <!-- 上传图片的区域 -->
+    <Button 
+        android:id="@+id/btn_addPic"
+        android:layout_width="240dp"
+        android:layout_height="171dp"
+        android:text="@string/btn_addPic"
+        android:textSize="15sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_below="@id/btn_addShareFollowers"
+        android:layout_marginTop="26dp"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>

@@ -10,11 +10,25 @@
     <string name="title_activity_create">CreateActivity</string>
     <string name="title_activity_pref">PrefActivity</string>
     <string name="title_activity_share">ShareActivity</string>
+    <string name="title_activity_renren">RenrenActivity</string>
+    <string name="title_activity_at_renren_friends">AtRenrenFriendsActivity</string>
     <!-- content descriptions -->
-    <string name="appLogo">app_logo</string>
-    <string name="settingsBtn">ib_of_settings</string>
-    <string name="addNewBtn">ib_of_add_new_habit</string>
-    <string name="habitPic">iv_of_habit_pic</string>
+    <string name="appLogo">app logo</string>
+    <string name="settingsBtn">ib of settings</string>
+    <string name="addNewBtn">ib of add new habit</string>
+    <string name="habitPic">iv of habit pic</string>
+    <string name="publishBtn">ib of publish</string>
+    <string name="createRtnBtn">ib of crt return</string>
+    <string name="createPublishBtn">ib of crt publish</string>
+    <string name="shareRtnBtn">ib of share rtn</string>
+    <string name="betRtnBtn">ib of bet return</string>
+    <string name="betPublishBtn">ib of bet publish</string>
+    <string name="prefRtnBtn">ib of pref rtn</string>
+    <string name="renrenLogo">logo of renren</string>
+    <string name="atFriendsRtnBtn">ib of at renren friends rtn</string>
+    <string name="atFriendsAckBtn">ib of at renren friends ack</string>
+    <string name="friendHeadIv">iv of renren friend head</string>
+    <string name="ivChooseState">iv of renren friend choose state</string>
     <!-- text of activity_auth -->
     <string name="tv_user">账号</string>
     <string name="tv_code">密码</string>
@@ -24,6 +38,8 @@
     <string name="toast_network_not_connected">请检查网络连接</string>
     <string name="toast_username_null">请输入用户名</string>
     <string name="toast_usercode_null">请输入密码</string>
+    <string name="btn_renrenAuth">连接人人</string>
+    <string name="toast_cancel_authorize">认证取消，请重新认证以登录</string>
     <!-- text of activity_main -->
     <string name="tv_appName">卓普</string>
     <string name="btn_letf">求个监督</string>
@@ -36,10 +52,11 @@
     <string name="tv_follower">\@ 肖银 刘阳 饶曦</string>
     <string name="debugWords">debug words</string>
     <string name="debugTimestamp">debug timestamp</string>
+    <string name="toast_max_reached">亲，先达成从前创建的赌约吧！</string>
+    <string name="toast_create_first">亲，请先创建您的赌约吧！</string>
+    <string name="toast_pic_not_exist">图片不存在</string>
     <!-- text of activity_create -->
     <string name="tv_betContact">赌约</string>
-    <string name="createRtnBtn">the button of return</string>
-    <string name="createPublishBtn">the button of publish</string>
     <string name="et_createHabit">点击创建习惯</string>
     <string name="et_createBet">点击创建赌约</string>
     <string name="btn_addFollowers">\@请人监督</string>
@@ -52,15 +69,47 @@
     <string name="tBtn_createAlarmState_on">开启</string>
     <string name="invalid">内容都填好了吗？</string>
     
-    <string name="cancel_create">取消</string>    
+    <string name="cancel_create">返回</string>    
     <string name="cancel_msg">真的取消创建习惯吗？</string>    
     <string name="yes">是</string>    
     <string name="no">否</string>    
     <string name="choose_habit">选择习惯</string>    
-    <string name="get_up">七点起床</string>
-    <string name="jogging">慢跑半小时</string>
-    <string name="sleep">十一点睡觉</string>    
+    <string name="recite_words">每天背30分钟单词</string>
+    <string name="get_up">8点前起床</string>
+    <string name="jogging">每天慢跑30分钟</string>    
     <string name="custom">自定义…</string>    
-    <string name="choose_pubnish">选择惩罚</string>    
-    <string name="eat">请大家吃东西</string>
+    <string name="choose_punish">选择惩罚</string>    
+    <string name="eat">请大家吃饭</string>
+    <string name="toast_renren_update_succeed">更新状态到人人</string>
+    <string name="toast_renren_update_failed">更新状态失败</string>
+    <!-- text of activity_share -->
+    <string name="tv_bet">赌约</string>
+    <string name="et_shareFeelingHint">说说你今天坚持习惯的感受吧！</string>
+    <string name="btn_addPic">点击上传图片</string>
+    <string name="cancel_share">返回</string>    
+    <string name="cancel_share_msg">不写点感受了吗？</string>    
+    <string name="choose_source">选择图片来源</string>
+    <string name="toast_sdcard_not_found">没找到SDCard</string>
+    <string name="toast_insert_success">添加记录成功</string>
+    <string name="toast_insert_failure">添加记录失败</string>
+    <!-- text of activity_bet -->
+    <string name="tv_begForBet">求监督</string>
+    <string name="cancel_bet">取消求监督</string>
+    <string name="cancel_bet_msg">不求监督了吗？</string>
+    <string name="db_insert_error">添加到数据库出现错误</string>
+    <!-- text of activity_pref -->
+    <string name="tv_preference">设置</string>
+    <string name="tv_habitManagement">账号管理</string>
+    <string name="btn_deleteHabit">放弃习惯</string>
+    <string name="tBtn_alarmStateOn">闹钟开启</string>
+    <string name="tBtn_alarmStateOff">闹钟关闭</string>
+    <string name="btn_changeAccount">更换账号</string>
+    <string name="tv_habitManagement">习惯管理</string>
+    <!-- text of activity_renren -->
+    <string name="toast_login_denied">认证失败：登录被拒绝</string>
+    <!-- text of activity_at_renren_friends -->
+    <string name="tv_atFriends">选择好友</string>
+    <string name="et_atedFriends">你想@的人…</string>
+	<!-- text of activity_at_renren_friends -->
+	<string name="toast_access_token_not_found">授权已失效</string>
 </resources>
